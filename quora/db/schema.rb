@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170717115405) do
   create_table "answers", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "questions_id"
-    t.string   "content",      null: false
+    t.string   "content"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170717115405) do
   add_index "downvotes", ["user_id"], name: "index_downvotes_on_user_id"
 
   create_table "questions", force: :cascade do |t|
-    t.string   "content",    null: false
+    t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,6 +64,10 @@ ActiveRecord::Schema.define(version: 20170717115405) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
