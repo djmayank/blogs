@@ -1,0 +1,170 @@
+<%if a.question_id == question_id %>
+
+<div class="show1">	
+<div class="temp">
+<div class="left">
+		<div class="userImage">
+</div>
+</div>
+<ul class="hello1">
+<li class="hello2">
+<div class="userDetail">
+		<b>
+		<%= a.user.email %>
+		</b>
+</div>
+</li>
+<li class="hello2">
+		<br>
+ <div class="date1">
+<% if a.created_at > Time.now.beginning_of_day %>
+<%="#{time_ago_in_words(a.created_at)} ago"%>
+<% else %>
+    <%= a.created_at.strftime("%b %d, %Y") %>  
+<% end %>
+</div>
+<br>
+</div>
+</li>
+</ul>
+<%if a.content.size >= 540 %>
+<div class="answerpart">
+<div class="content1">
+<div class="sidebar-box">
+<p>  <%= a.content %></p>
+  <p class="read-more no"><a href="#" id="butto" class="butto">Read More</a></p>
+</div>
+</div>
+</div>
+
+<% else %>
+
+<div class="answerpart">
+<div class="content1">
+<div class="sidebar-box">
+<p>  <%= a.content %></p>
+
+</div>
+
+</div>
+
+</div>
+	
+<%end %>
+	
+
+
+<br>
+
+</div>
+
+
+<div class="actions"> 
+
+
+
+		</div>
+<%end%>
+
+<style>
+
+
+.sidebar-box {
+  max-height: 90px;
+  position: relative;
+  overflow: hidden;
+}
+.sidebar-box .read-more { 
+  position: absolute; 
+  bottom: -25px; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; padding: 30px 0; 
+  z-index: 1;
+
+ 
+  background-image: linear-gradient(to bottom, transparent, #e3ecf9);
+}
+
+
+.butto {
+
+    background-color: #f1f8fb;
+    border: 1px solid #bbcadc;
+    border-radius: 4px;
+    color: #2b6dad;
+   margin: 4px 2px;
+    text-align: center;
+    text-decoration: none;
+    padding: 4px 15px;
+    font-size: 16px;
+    cursor: pointer;
+ width: 200px;
+  transition: all 0.5s;
+  margin: 5px;
+}
+
+.butto span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.butto span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.butto:hover {
+  background-color: #3e78ad;
+                    color: #ffffff;
+}
+
+.butto:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.butto:on click
+{
+  background-color: #de7462;
+}
+
+</style>
+
+
+<script>
+
+var $el, $ps, $up, totalHeight;
+
+$(".sidebar-box .butto").click(function() {
+      
+  totalHeight = 0
+  $el = $(this);
+  $p  = $el.parent();
+  $up = $p.parent();
+  $ps = $up.find("p:not('.read-more')");
+  $ps.each(function() {
+    totalHeight += $(this).outerHeight();
+  });    
+  $up
+    .css({
+      
+      "height": $up.height(),
+      "max-height": 9999
+    })
+    .animate({
+      "height": totalHeight
+    });
+  
+  $p.fadeOut();
+  
+  return false;
+});
+
+</script>
